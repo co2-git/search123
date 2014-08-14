@@ -80,16 +80,21 @@ function search123 (options) {
           ads: getSections(doc.getElementsByTagName('sponsored').item(0)
             .getElementsByTagName('ads').item(0)
             .getElementsByTagName('ad'))
-        },
-        organic: {
+        }
+      };
+
+      var organic = doc.getElementsByTagName('organic').item(0);
+
+      if ( organic ) {
+        res.organic = {
           matched: +doc.getElementsByTagName('organic').item(0)
             .getElementsByTagName('matched').item(0)
             .childNodes.item(0).nodeValue,
           listings: getSections(doc.getElementsByTagName('organic').item(0)
             .getElementsByTagName('listings').item(0)
             .getElementsByTagName('listing'))
-        }
-      };
+        };
+      }
 
       deferred.resolve(res);
 
