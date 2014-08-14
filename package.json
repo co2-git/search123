@@ -1,12 +1,13 @@
 {
   "name": "search123",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Node module for the search123 API",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "francoisv <francoisrvespa@gmail.com>",
+  "repository": "https://github.com/co2-git/search123.git",
   "license": "ISC",
   "dependencies": {
     "q": "^1.0.1",

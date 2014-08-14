@@ -1,10 +1,28 @@
+/**
+ *    search123 Node API module
+ *    =========================
+ *
+ *    A module to connect with the search123 API in order to perform searches
+ *
+**/
+
+// Get the validate() function that will validate options
+
 var validate = require('./lib/validate');
+
+// Get the parameters model
 
 var parameters = require('./lib/parameters');
 
+// Promises
+
 var Q = require('q');
 
+// Search API URL
+
 var url = 'http://cgi.search123.uk.com/xmlfeed?';
+
+// DOM parser helper function
 
 function getData (node, of) {
   var tag = node.getElementsByTagName(of).item(0);
@@ -12,6 +30,9 @@ function getData (node, of) {
     return node.getElementsByTagName(of).item(0).childNodes.item(0).nodeValue;
   }
 }
+
+
+// DOM parser helper function
 
 function getSections (section) {
 
@@ -31,23 +52,34 @@ function getSections (section) {
   return sections;
 }
 
+// The actual function
+
 function search123 (options) {
+
+  // Make a promise
   
   var deferred = Q.defer();
 
+  // Use domain
+
   var domain = require('domain').create();
+
+  // On domain errors, reject promise
 
   domain.on('error', function (error) {
     console.log('error', error.message, error.name, error.stack.split(/\n/));
     deferred.reject(error);
   });
 
+  // Run domain
+
   domain.run(function () {
+
     // Validate options
 
     validate(options);
 
-    // Encode options
+    // URL-Encode options
 
     for ( var param in parameters ) {
       if ( parameters[param].encode ) {
@@ -55,9 +87,9 @@ function search123 (options) {
       }
     }
 
-    var urlParameters = [];
-
     // Encode the options into urlParamters
+
+    var urlParameters = [];
 
     for ( var option in options ) {
       urlParameters.push(require('util').format('%s=%s', option, options[option]));
@@ -67,13 +99,23 @@ function search123 (options) {
 
     url += urlParameters.join('&');
 
+    // Use the requests module
+
     var request = require('request');
+
+    // Call search123
 
     request(url, domain.intercept(function (response, body) {
 
+      // Get DOMParser
+
       var DOMParser = require('xmldom').DOMParser;
 
+      // Parse XML response
+
       var doc = new DOMParser().parseFromString(body);
+
+      // Build promise reponse
 
       var res = {
         sponsored: {
@@ -82,6 +124,8 @@ function search123 (options) {
             .getElementsByTagName('ad'))
         }
       };
+
+      // Get organic results if any
 
       var organic = doc.getElementsByTagName('organic').item(0);
 
@@ -96,12 +140,18 @@ function search123 (options) {
         };
       }
 
-      deferred.resolve(res);
+      // Resolve promises
+
+      deferred.resolve(res, body);
 
     }));
   });
 
+  // Return promise
+
   return deferred.promise;
 }
+
+// Expose search123
 
 module.exports = search123;
