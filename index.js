@@ -111,6 +111,8 @@ function search123 (options) {
 
     request(url, domain.intercept(function (response, body) {
 
+      console.log(response, body);
+
       // Get DOMParser
 
       var DOMParser = require('xmldom').DOMParser;
