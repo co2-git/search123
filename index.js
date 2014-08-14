@@ -92,7 +92,7 @@ function search123 (options) {
     var urlParameters = [];
 
     for ( var option in options ) {
-      if ( ['aid', 'ip', 'query', 'market', 'uid', 'client_ref', 'organic_start', 'organic_size'] ) {
+      if ( ['aid', 'ip', 'query', 'market', 'uid', 'client_ref', 'organic_start', 'organic_size'].indexOf(option) ) {
         urlParameters.push(require('util').format('%s=%s', option, options[option]));
       }
     }
