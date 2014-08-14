@@ -1,0 +1,17 @@
+{
+  "name": "search123",
+  "version": "0.0.1",
+  "description": "Node module for the search123 API",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "q": "^1.0.1",
+    "request": "^2.40.0",
+    "validator": "^3.17.0",
+    "xmldom": "^0.1.19"
+  }
+}
