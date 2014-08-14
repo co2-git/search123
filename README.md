@@ -17,12 +17,12 @@ var search123 = require('search123');
 var options = {};
 
 search123(options)
-	.error(function (error) {
-		// ...
+	.then(function (results) {
+		console.log(results);
+	},
+	function (error) {
+		throw error;
 	})
-	.success(function (data) {
-		// ...
-	});
 ```
 
 # Options
