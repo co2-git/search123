@@ -38,7 +38,7 @@ function search123 (options) {
   var domain = require('domain').create();
 
   domain.on('error', function (error) {
-    console.log('errrorororor', error.message);
+    console.log('error', error.message, error.name, error.stack.split(/\n/));
     deferred.reject(error);
   });
 
