@@ -101,6 +101,8 @@ function search123 (options) {
 
     url += urlParameters.join('&');
 
+    console.log('Search API', url);
+
     // Use the requests module
 
     var request = require('request');
