@@ -131,10 +131,10 @@ function search123 (options) {
 
       if ( organic ) {
         res.organic = {
-          matched: +doc.getElementsByTagName('organic').item(0)
+          matched: +organic
             .getElementsByTagName('matched').item(0)
             .childNodes.item(0).nodeValue,
-          listings: getSections(doc.getElementsByTagName('organic').item(0)
+          listings: getSections(organic
             .getElementsByTagName('listings').item(0)
             .getElementsByTagName('listing'))
         };
@@ -142,7 +142,7 @@ function search123 (options) {
 
       // Resolve promises
 
-      deferred.resolve(res, body);
+      deferred.resolve({ json: res, xml: body });
 
     }));
   });
