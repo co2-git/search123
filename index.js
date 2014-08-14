@@ -92,7 +92,7 @@ function search123 (options) {
     var urlParameters = [];
 
     for ( var option in options ) {
-      if ( ['aid', 'ip', 'query', 'market', 'uid', 'client_ref', 'organic_start', 'organic_size'].indexOf(option) ) {
+      if ( ['aid', 'ip', 'query', 'market', 'uid', 'client_ref', 'organic_start', 'organic_size'].indexOf(option) !== -1 ) {
         urlParameters.push(require('util').format('%s=%s', option, options[option]));
       }
     }
@@ -111,7 +111,7 @@ function search123 (options) {
 
     request(url, domain.intercept(function (response, body) {
 
-      console.log(response, body);
+      console.log('Search API response', body);
 
       // Get DOMParser
 
