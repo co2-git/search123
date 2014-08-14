@@ -92,7 +92,9 @@ function search123 (options) {
     var urlParameters = [];
 
     for ( var option in options ) {
-      urlParameters.push(require('util').format('%s=%s', option, options[option]));
+      if ( ['aid', 'ip', 'query', 'market', 'client_ref', 'organic_start', 'organic_size'] ) {
+        urlParameters.push(require('util').format('%s=%s', option, options[option]));
+      }
     }
 
     // Add query string to the URL
