@@ -1,6 +1,6 @@
 {
   "name": "search123",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Node module for the search123 API",
   "main": "index.js",
   "scripts": {
