@@ -148,7 +148,12 @@ function search123 (options) {
 
       // Resolve promises
 
-      deferred.resolve({ json: res, xml: body });
+      deferred.resolve({ json: res, xml: body, pagination: {
+        size: options.size,
+        start: options.start,
+        organic_size: options.organic_size,
+        organic_start: options.organic_start
+      } });
 
     }));
   });
